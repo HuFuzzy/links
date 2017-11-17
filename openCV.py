@@ -4,20 +4,23 @@ import numpy as np
 
 
 
-face_cascade = cv2.CascadeClassifier('xml/haarcascade_frontalface_default.xml')
+boob = cv2.CascadeClassifier('xml_cascade/boobs')
 
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-img = cv2.imread('img/teste1.jpg')
 
+img = cv2.imread('08719.jpg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+boobs = boob.detectMultiScale(gray, 1.3, 5)
 
-for (x, y, w, h) in faces:
+if (len(boobs)>0):
+    print("asdasd")
+
+
+for (x, y, w, h) in boobs:
    cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
    roi_gray = gray[y:y + h, x:x + w]
    roi_color = img[y:y + h, x:x + w]
    font = cv2.FONT_HERSHEY_COMPLEX
-   cv2.putText(img, "Rosto", (x, y), font, 0.5, (200, 255, 255), 2, cv2.LINE_AA)
+   cv2.putText(img, "BOOB", (x, y), font, 0.5, (200, 255, 255), 2, cv2.LINE_AA)
 
 
 cv2.imshow('Sasha Grey', img)
